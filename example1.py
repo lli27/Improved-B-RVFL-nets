@@ -9,16 +9,7 @@ import numpy as np
 import pandas as pd
 import Improved_B_RVFL
 from sklearn.model_selection import train_test_split
-import xlrd
 import random
-#data=xlrd.open_workbook('CASP.xlsx')
-#data=data.sheets()[0]
-#X=np.zeros((45730,9))
-#for i in range(9):
-#    X[:,i]=data.col_values(i)
-#X=X[:20000,:]
-#Y=data.col_values(9)
-#Y=Y[:20000]
 fr=open(r'delta_elv.txt')
 data=[inst.strip().split(',') for inst in fr.readlines()]
 for i in range(len(data)):
@@ -33,10 +24,3 @@ for i in range(1):
 result=pd.DataFrame(result)
 print(np.mean(result))
 print(np.std(result))
-"""
-0    0.014456
-1    0.017371
-2    0.594792
-3    0.601574
-4    5.000000
-"""
