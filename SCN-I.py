@@ -10,41 +10,13 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 # 读取数据
-#fr=open(r'D:\python3_work\baseball.txt')
-#data=[inst.strip().split(',') for inst in fr.readlines()]
-#for i in range(len(data)):
-#    data[i]=[float(x) for x in data[i]]
-#data=np.mat(data)
-#X=data[:,:-1]
-#Y=data[:,-1]
-#fr=open(r'D:/python3_work/Concrete_Slump.txt')
-#data=[inst.strip().split(',') for inst in fr.readlines()]
-#for i in range(len(data)):
-#    data[i]=[float(x) for x in data[i]]
-#data=np.mat(data)
-#X=data[:,1:8]
-#Y=data[:,8]
-fr=open(r'ele1.txt')
+fr=open(r'delta_elv.txt')
 data=[inst.strip().split(',') for inst in fr.readlines()]
 for i in range(len(data)):
     data[i]=[float(x) for x in data[i]]
 data=np.mat(data)
 X=data[:,:-1]
 Y=data[:,-1]
-#import xlrd
-#data=xlrd.open_workbook('Concrete.xls')
-#data=data.sheets()[0]
-#X=np.zeros((1030,8))
-#for i in range(8):
-#    X[:,i]=data.col_values(i)
-#Y=data.col_values(8)
-#fr=open(r'delta_elv.txt')
-#data=[inst.strip().split(',') for inst in fr.readlines()]
-#for i in range(len(data)):
-#    data[i]=[float(x) for x in data[i]]
-#data=np.mat(data)
-#X=data[:,:-1]
-#Y=data[:,-1]
 X_train,X_test,Y_train,Y_test=train_test_split(X,Y,random_state=1)
 scaler_x=MinMaxScaler(feature_range=(-1,1))
 X_train=scaler_x.fit_transform(X_train)
@@ -53,11 +25,12 @@ scaler_y=MinMaxScaler(feature_range=(0,1))
 Y_train=scaler_y.fit_transform(Y_train)
 Y_test=scaler_y.transform(Y_test)
 Y_train=Y_train.ravel()
-sigma=0.1
-rd_num=int(sigma*len(Y_train))
-rd=random.sample(range(len(Y_train)),rd_num)
-sm=np.random.uniform(-1,0,size=rd_num)
-Y_train[rd]=sm
+#添加噪音
+#sigma=0.1
+#rd_num=int(sigma*len(Y_train))
+#rd=random.sample(range(len(Y_train)),rd_num)
+#sm=np.random.uniform(-1,0,size=rd_num)
+#Y_train[rd]=sm
 x_tr=X_train;y_tr=Y_train;x_te=X_test;y_te=Y_test.ravel()
 mse_te=1000000;num=0;result=[]
 while num<1:
